@@ -11,22 +11,28 @@ now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
 print("Starting Time =", current_time)
 
-df_movies = pd.read_csv('C:/Users/burak/Desktop/bitirme_proje/movielens-large/movies.csv')
-df_ratings = pd.read_csv('C:/Users/burak/Desktop/bitirme_proje/movielens-large/ratings.csv')
+#read data
+df_movies = pd.read_csv('../dataset/ml-25m/movies.csv')
+df_ratings = pd.read_csv('../dataset/ml-25m/ratings.csv')
 
+#drop timestamp, genres and name columns
 df_ratings = df_ratings.loc[:, df_ratings.columns != 'timestamp']
 df_ratings.dtype={'userId': 'int32', 'movieId': 'int32', 'rating': 'float64'}
 df_movies = df_movies.loc[:, df_movies.columns != 'genres']
 df_movies.dtype={'movieId': 'int32', 'title': 'str'}
 
+#find unique user count and unique movie count
 num_users = len(df_ratings.userId.unique())
 num_items = len(df_ratings.movieId.unique())
 print('There are {} unique users and {} unique movies in this data set'.format(num_users, num_items))
 
+#getting how many ratings given to rating values
 df_ratings_cnt_tmp = pd.DataFrame(df_ratings.groupby('rating').size(), columns=['count'])
 df_ratings_cnt_tmp
 
+#finding the number of all elements on csr matrix
 total_cnt = num_users * num_items
+#finding the number of ratings that supposed to be zero in csr matrix
 rating_zero_cnt = total_cnt - df_ratings.shape[0]
 # append counts of zero rating to df_ratings_cnt
 df_ratings_cnt = df_ratings_cnt_tmp.append(
@@ -56,18 +62,21 @@ df_users_cnt = pd.DataFrame(df_ratings_drop_movies.groupby('userId').size(), col
 
 # filter data
 #ratings_thres = 200
+#drop inactive users by setting a threshold
 active_users = list(set(df_users_cnt.query('count >= 200').index))
 df_ratings_drop_users = df_ratings_drop_movies[df_ratings_drop_movies.userId.isin(active_users)]
 print('shape of original ratings data: ', df_ratings.shape)
 print('shape of ratings data after dropping both unpopular movies and inactive users: ', df_ratings_drop_users.shape)
 
-# pivot and create movie-user matrix
+# pivot and create movie-user matrix which its values are ratings
 movie_user_mat = df_ratings_drop_users.pivot(index='movieId', columns='userId', values='rating').fillna(0)
+
 # create mapper from movie title to index
 movie_to_idx = {
     movie: i for i, movie in 
     enumerate(list(df_movies.set_index('movieId').loc[movie_user_mat.index].title))
 }
+
 # transform matrix to scipy sparse matrix
 movie_user_mat_sparse = csr_matrix(movie_user_mat.values)
 
