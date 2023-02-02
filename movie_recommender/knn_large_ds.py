@@ -131,14 +131,13 @@ def make_recommendation(fav_movie, n_recommandations = 10):
 
     """print('Recommendations for {}:'.format(fav_movie))
     for i, (idx,dist) in enumerate(raw_recommends):
-        listem.append(['{0}: {1}, with distance of {2}'.format(i+1, reverse_mapper[idx], round(dist,2))])
         print('{0}: {1}, with distance of {2}'.format(i+1, reverse_mapper[idx], round(dist,2)))"""
 
     return enumerate(raw_recommends), reverse_mapper
 
 
 
-
+#finishing time
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
 print("Ending Time =", current_time)
