@@ -12,8 +12,8 @@ current_time = now.strftime("%H:%M:%S")
 print("Starting Time =", current_time)
 
 #read data
-df_movies = pd.read_csv('../dataset/ml-25m/movies.csv')
-df_ratings = pd.read_csv('../dataset/ml-25m/ratings.csv')
+df_movies = pd.read_csv('../Dataset/ml-25m/movies.csv')
+df_ratings = pd.read_csv('../Dataset/ml-25m/ratings.csv')
 
 #drop timestamp, genres and name columns
 df_ratings = df_ratings.loc[:, df_ratings.columns != 'timestamp']
@@ -28,7 +28,6 @@ print('There are {} unique users and {} unique movies in this data set'.format(n
 
 #getting how many ratings given to rating values
 df_ratings_cnt_tmp = pd.DataFrame(df_ratings.groupby('rating').size(), columns=['count'])
-df_ratings_cnt_tmp
 
 #finding the number of all elements on csr matrix
 total_cnt = num_users * num_items
@@ -39,16 +38,12 @@ df_ratings_cnt = df_ratings_cnt_tmp.append(
     pd.DataFrame({'count': rating_zero_cnt}, index=[0.0]),
     verify_integrity=True,
 ).sort_index()
-df_ratings_cnt
-
 
 # add log count
 df_ratings_cnt['log_count'] = np.log(df_ratings_cnt['count'])
-df_ratings_cnt
 
 # get rating frequency
 df_movies_cnt = pd.DataFrame(df_ratings.groupby('movieId').size(), columns=['count'])
-df_movies_cnt.head()
 
 # filter data
 #popularity_thres = 200
@@ -71,7 +66,7 @@ print('shape of ratings data after dropping both unpopular movies and inactive u
 # pivot and create movie-user matrix which its values are ratings
 movie_user_mat = df_ratings_drop_users.pivot(index='movieId', columns='userId', values='rating').fillna(0)
 
-# create mapper from movie title to index
+# create dict mapper from movie title to index
 movie_to_idx = {
     movie: i for i, movie in 
     enumerate(list(df_movies.set_index('movieId').loc[movie_user_mat.index].title))
@@ -120,7 +115,6 @@ def fuzzy_matching(fav_movie, verbose=True):
 def make_recommendation(fav_movie, n_recommandations = 10):
     
     print('inside of make_recommendation')
-    listem = []
 
     print('You have input movie:', fav_movie)
     idx = fuzzy_matching(fav_movie)
@@ -141,7 +135,6 @@ def make_recommendation(fav_movie, n_recommandations = 10):
         print('{0}: {1}, with distance of {2}'.format(i+1, reverse_mapper[idx], round(dist,2)))"""
 
     return enumerate(raw_recommends), reverse_mapper
-
 
 
 
