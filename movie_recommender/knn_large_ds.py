@@ -12,8 +12,8 @@ current_time = now.strftime("%H:%M:%S")
 print("Starting Time =", current_time)
 
 #read data
-df_movies = pd.read_csv('../Dataset/ml-25m/movies.csv')
-df_ratings = pd.read_csv('../Dataset/ml-25m/ratings.csv')
+df_movies = pd.read_csv('../../Dataset/ml-25m/movies.csv')
+df_ratings = pd.read_csv('../../Dataset/ml-25m/ratings.csv')
 
 #drop timestamp, genres and name columns
 df_ratings = df_ratings.loc[:, df_ratings.columns != 'timestamp']
