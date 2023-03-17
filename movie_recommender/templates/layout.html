@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movie Recommender</title>
+	<style>
+		body {
+			background-color: black;
+			color: rgb(0, 0, 0);
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+		.left-curtain, .right-curtain {
+			background-color: rgb(148, 5, 5);
+			height: 100%;
+			width: 10%;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			z-index: 1;
+		}
+		.left-curtain {
+			left: 0;
+		}
+		.right-curtain {
+			right: 0;
+		}
+		#screen {
+			background-color: rgb(225, 225, 225);
+			height: 70%;
+			width: 60%;
+			position: absolute;
+			top: 15%;
+			left: 20%;
+			right: 20%;
+			bottom: 15%;
+			z-index: 2;
+		}
+	</style>
+</head>
+<body>
+	<div class="left-curtain"></div>
+	<div class="right-curtain"></div>
+	<div id="screen">
+		{% block body %}{% endblock %}
+	</div>
+</body>
+</html>
