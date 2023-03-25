@@ -8,6 +8,18 @@
 			color: rgb(0, 0, 0);
 			font-family: Arial, sans-serif;
 			text-align: center;
+			background-size: cover;
+			
+		}
+		.bg {
+			background-size: cover;
+			background-image: url("https://i.hizliresim.com/p44v0c3.jpg");
+			background-position: center center;
+ 			height: 100%;
+ 			width: 100%;
+ 			position: fixed;
+ 			top: 0;
+ 			left: 0;
 		}
 		.left-curtain, .right-curtain {
 			background-color: rgb(148, 5, 5);
@@ -26,24 +38,21 @@
 		}
 		#screen {
 			background-color: rgb(225, 225, 225);
-			height: 70%;
-			width: 60%;
+			height: 60%;
+			width: 50%;
 			position: absolute;
-			top: 15%;
-			left: 20%;
-			right: 20%;
-			bottom: 15%;
+			top: 20%;
+			left: 25%;
+			right: 25%;
+			bottom: 20%;
 			z-index: 2;
 		}
 	</style>
 </head>
 <body>
-	<div class="left-curtain">
-		<img src="/static/perdeleft2.jpg" alt="Örnek Resim" />
+	<div class="bg">
 	</div>
-	<div class="right-curtain">
-		<img src="/static/perdeleft2.jpg" alt="Örnek Resim" />
-	</div>
+	
 	<div id="screen">
 		{% block body %}{% endblock %}
 	</div>
