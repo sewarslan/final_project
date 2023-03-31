@@ -120,8 +120,8 @@ def predict_uservec(user_vecs, item_vecs, model, u_s, i_s, scaler):
     return(sorted_index, sorted_ypu, sorted_items, sorted_user)
                 
 def get_user_vecs(user_id, user_train, item_vecs, user_to_genre):
-    """ given a user_id, return:
-        user train/predict matrix to match the size of item_vecs
+    """ given  a user_id, return:
+        user train/predictmatrix to match the size of item_vecs
         y vector with ratings for all rated movies and 0 for others of size item_vecs """
 
     if not user_id in user_to_genre:
