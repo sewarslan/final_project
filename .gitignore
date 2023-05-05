@@ -1,2 +1,7 @@
 
 *.parquet
+movie_recommender/csv/item_vecs_25m.csv
+movie_recommender/csv/x_train_item_25m.csv
+movie_recommender/csv/x_train_user_25m.csv
+movie_recommender/csv/y_train_25m.csv
+movie_recommender/umr_dict_25m.pickle
