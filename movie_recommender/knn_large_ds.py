@@ -34,10 +34,14 @@ total_cnt = num_users * num_items
 #finding the number of ratings that supposed to be zero in csr matrix
 rating_zero_cnt = total_cnt - df_ratings.shape[0]
 # append counts of zero rating to df_ratings_cnt
-df_ratings_cnt = df_ratings_cnt_tmp.append(
+
+# ALTTAKİ KOMUT PANDAS 2.0 İLE APPEND KOMUTU KALDIRILDIĞI İÇİN ARTIK ÇALIŞMIYOR. CONCAT KULLANARAK TEKRAR YAZILDI
+"""df_ratings_cnt = df_ratings_cnt_tmp.append(
     pd.DataFrame({'count': rating_zero_cnt}, index=[0.0]),
     verify_integrity=True,
 ).sort_index()
+"""
+df_ratings_cnt = pd.concat([df_ratings_cnt_tmp,pd.DataFrame({'count': rating_zero_cnt}, index=[0.0])], verify_integrity=True).sort_index()
 
 # add log count
 df_ratings_cnt['log_count'] = np.log(df_ratings_cnt['count'])
