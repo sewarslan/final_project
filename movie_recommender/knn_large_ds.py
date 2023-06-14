@@ -6,11 +6,6 @@ from sklearn.neighbors import NearestNeighbors
 #for time calculating
 from datetime import datetime
 
-
-now = datetime.now()
-current_time = now.strftime("%H:%M:%S")
-print("Starting Time =", current_time)
-
 #read data
 df_movies = pd.read_csv('../../Dataset/ml-25m/movies.csv')
 df_ratings = pd.read_csv('../../Dataset/ml-25m/ratings.csv')
@@ -139,9 +134,3 @@ def make_recommendation(fav_movie, n_recommandations = 10):
 
     return enumerate(raw_recommends), reverse_mapper, movie_name
 
-
-
-#finishing time
-now = datetime.now()
-current_time = now.strftime("%H:%M:%S")
-print("Ending Time =", current_time)

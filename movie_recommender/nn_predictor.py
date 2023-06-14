@@ -18,7 +18,7 @@ with open('./pickles/movie_dict.pickle', 'rb') as f:
     # Dump the dictionary into the file using pickle
     movie_dict = pickle.load(f)
 
-item_vecs = genfromtxt('item_vecs.csv', delimiter=',')
+item_vecs = genfromtxt('csv/item_vecs.csv', delimiter=',')
 
 def fuzzy_matching(fav_movie, verbose=True):
     print('inside of fuzzy matching')
