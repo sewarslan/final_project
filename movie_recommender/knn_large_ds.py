@@ -114,14 +114,14 @@ def fuzzy_matching(fav_movie, verbose=True):
         return
     if verbose:
         print('Found possible matches in our database: {0}\n'.format([x[0] for x in match_tuple]))
-    return match_tuple[0][1]
+    return match_tuple[0][1], match_tuple[0][0]
 
 def make_recommendation(fav_movie, n_recommandations = 10):
     
     print('inside of make_recommendation')
 
     print('You have input movie:', fav_movie)
-    idx = fuzzy_matching(fav_movie)
+    idx, movie_name = fuzzy_matching(fav_movie)
     #idx = 10
     print('Recommendation system start to make inference')
     print('....../n')
@@ -137,7 +137,7 @@ def make_recommendation(fav_movie, n_recommandations = 10):
     for i, (idx,dist) in enumerate(raw_recommends):
         print('{0}: {1}, with distance of {2}'.format(i+1, reverse_mapper[idx], round(dist,2)))"""
 
-    return enumerate(raw_recommends), reverse_mapper
+    return enumerate(raw_recommends), reverse_mapper, movie_name
 
 
 

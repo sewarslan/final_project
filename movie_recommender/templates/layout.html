@@ -2,9 +2,60 @@
 <html>
 <head>
 	<title>Movie Recommender</title>
+	<link rel="icon" type="image/x-icon" href="../static/favicon.png">
 	<style>
+
+		ul {
+		  list-style-type: none;
+		  margin: 0;
+		  padding: 0;
+		  overflow: hidden;
+		  background-color: #333;
+		}
+		
+		li {
+		  float: left;
+		}
+		
+		li a {
+		  display: block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		}
+		
+		li a:hover {
+		  background-color: #111;
+		}
+
+		input[type=button], input[type=submit], input[type=reset] {
+		  background-color: #000000;
+		  border: none;
+		  color: white;
+		  padding: 16px 32px;
+		  text-decoration: none;
+		  margin: 4px 2px;
+		  cursor: pointer;
+		}
+		input[type=text] {
+		  width: 100%;
+		  box-sizing: border-box;
+		  border: 2px solid #ccc;
+		  border-radius: 4px;
+		  font-size: 16px;
+		  background-color: white;
+		  background-image: url('../static/icons8-search-24.png');
+		  background-position: 10px 10px; 
+		  background-repeat: no-repeat;
+		  padding: 12px 20px 12px 40px;
+		}
+
+		input[type=text]:focus {
+		  border: 3px solid #555;
+		}
 		body {
-			background-color: black;
+			background-color: rgb(225, 225, 225);
 			color: rgb(0, 0, 0);
 			font-family: Arial, sans-serif;
 			text-align: center;
@@ -13,7 +64,7 @@
 		}
 		.bg {
 			background-size: cover;
-			background-image: url("https://i.hizliresim.com/p44v0c3.jpg");
+			background-image: url("https://www.linkpicture.com/q/p44v0c3-fotor-bg-remover-20230602162937_1.png");
 			background-position: center center;
  			height: 100%;
  			width: 100%;
@@ -21,25 +72,15 @@
  			top: 0;
  			left: 0;
 		}
-		.left-curtain, .right-curtain {
-			background-color: rgb(148, 5, 5);
-			height: 100%;
-			width: 10%;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			z-index: 1;
-		}
-		.left-curtain {
-			left: 0;
-		}
-		.right-curtain {
-			right: 0;
-		}
+		
+		
 		#screen {
-			background-color: rgb(225, 225, 225);
-			height: 60%;
+			background-color: rgba(255, 185, 63, 0);
+			opacity: 1;
+			height: 100vh;
+			min-height: 100vh;
 			width: 50%;
+			padding: 0;
 			position: absolute;
 			top: 20%;
 			left: 25%;
@@ -50,7 +91,11 @@
 	</style>
 </head>
 <body>
+
 	<div class="bg">
+		<ul>
+			<li><a class="active" href="/">Anasayfa</a></li>
+		</ul>
 	</div>
 	
 	<div id="screen">

@@ -2,30 +2,53 @@
 
 {% block body %}
 
-   <h1 class="mx-auto"> {{my_favorite}} İçin Film Önerileri:</h1>
-   <table class="table table-striped" style="margin-left: 20px;">
-     <!-- Table headers -->
-         <th>
-             <tr style="color: green; ">    
-             <td> </td>
-             <td>Movie Name</td>
-             <td>Distance</td>
-     </tr>
-         </th>
-           
-     <!-- For loop logic of jinja template -->
-     {%for i, (idx,dist) in raw_recommends%}
-       
-     <!-- table rows -->
-     <tr>
-         <td>{{i+1}}</td>
-         <td>{{reverse_mapper[idx]}}</td>
-         <td>{{dist}}</td>
-       
-     {%endfor%}
-       
-     </tr>
-       
-     </table>
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        
+        body {
+          overflow-x: scroll;
+          white-space: nowrap;
+        }
+
+        .video-container {
+          display: inline-block;
+          margin-right: 20px;
+        }
+
+        .scrollbar {
+          overflow-x: auto;
+          white-space: nowrap;
+          padding: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>{{movie_name}} için öneriler:</h1>
+      <div class="scrollbar">
+        {%for i in range(10)%}
+            <div class="video-container">
+              <h2>{{i+1}} - {{nn_title_list[i]}}</h2>
+              <iframe src={{"https://autoembed.to/trailer/movie/" + movieLink[nn_id_list[i]]}}  width ="426" height="240" frameborder="0" allowfullscreen></iframe>
+            </div>
+        {%endfor%}
+        <!-- İstediğiniz kadar video ekleyebilirsiniz -->
+      </div>
+
+      <h1>{{movie_name}} izleyenler bunları da beğendi:</h1>
+      <div class="scrollbar">
+        {%for i, (idx,dist) in raw_recommends%}
+            <div class="video-container">
+              <h2>{{i+1}} - {{reverse_mapper[idx]}}</h2>
+              <iframe src={{"https://autoembed.to/trailer/movie/" + movieLink[idxToMovieId[idx]]}}  width ="426" height="240" frameborder="0" allowfullscreen></iframe>
+            </div>
+        {%endfor%}
+        <!-- İstediğiniz kadar video ekleyebilirsiniz -->
+      </div>
+
+      
+    </body>
+    </html>
      
 {% endblock %}     
