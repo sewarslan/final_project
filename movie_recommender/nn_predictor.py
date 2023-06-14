@@ -1,8 +1,5 @@
 import numpy as np
 from numpy import genfromtxt
-import numpy.ma as ma
-import pandas as pd
-import csv
 import pickle
 from fuzzywuzzy import fuzz
 
@@ -63,7 +60,3 @@ def make_pred(fav_movie, n_recommandations = 10):
 
 
     return id_listesi, title_listesi
-    
-nn_id_list, nn_title_list = make_pred('toy story')
-
-print(nn_title_list)

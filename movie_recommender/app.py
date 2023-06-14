@@ -12,8 +12,6 @@ with open('./pickles/idxtomovieid_dict.pickle', 'rb') as f:
     # Load the dictionary from the file using pickle
     idxToMovieId = pickle.load(f)
 
-
-
 app = Flask(__name__, template_folder='templates')
 
 
@@ -30,7 +28,6 @@ def results():
         return render_template("recommends.html", raw_recommends = raw_recommends,reverse_mapper=reverse_mapper, my_favorite = my_favorite, movieLink = movieLink, idxToMovieId = idxToMovieId, nn_id_list = nn_id_list, nn_title_list = nn_title_list, movie_name = movie_name)
     else:
         return render_template("recommends.html", hata = 'Bir sorun oluştu!')
-    
 
 if __name__ == "__main__":
     app.run(debug=True)
