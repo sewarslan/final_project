@@ -70,7 +70,6 @@ movie_to_idx = {
     movie: i for i, movie in 
     enumerate(list(df_movies.set_index('movieId').loc[movie_user_mat.index].title))
 }
-print(movie_to_idx)
 # transform matrix to scipy sparse matrix
 movie_user_mat_sparse = csr_matrix(movie_user_mat.values)
 

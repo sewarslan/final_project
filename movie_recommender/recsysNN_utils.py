@@ -6,6 +6,7 @@ from numpy import genfromtxt
 import pickle
 import tabulate
 
+#coursera's codes
 
 def load_data():
     ''' called to load preprepared data for the lab '''
